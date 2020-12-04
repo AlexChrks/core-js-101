@@ -443,21 +443,6 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(/* arr */) {
-  // const firstOrderSort = arr.sort((itemA, itemB) => {
-  //   if (itemA.country > itemB.country) {
-  //     return 1;
-  //   }
-  //   return -1;
-  // });
-  // const secondOrderSort = firstOrderSort.sort((itemA, itemB) => {
-  //   if (itemA.country === itemB.country) {
-  //     if (itemA.city > itemB.city) {
-  //       return 1;
-  //     }
-  //   }
-  //   return -1;
-  // });
-  // return secondOrderSort;
   throw new Error('Not implemented');
 }
 
