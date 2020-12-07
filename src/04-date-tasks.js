@@ -34,8 +34,8 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return Date.parse(value);
 }
 
 
@@ -115,8 +115,19 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const hours = date.getUTCHours() % 12;
+  const minutes = date.getUTCMinutes();
+  const angleHours = 0.5 * (60 * hours + minutes);
+  const angleMinutes = 6 * minutes;
+
+  let resultAngleDegrees = Math.abs(angleHours - angleMinutes);
+  if (resultAngleDegrees > 180) {
+    resultAngleDegrees = 360 - resultAngleDegrees;
+  }
+
+  const resultAngleRadians = resultAngleDegrees * (Math.PI / 180);
+  return resultAngleRadians;
 }
 
 

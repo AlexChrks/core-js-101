@@ -299,7 +299,10 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-  const sortedArr = arr.sort((itemA, itemB) => itemA < itemB);
+  const sortedArr = arr.sort((itemA, itemB) => (itemA > itemB ? -1 : 1));
+  if (sortedArr.length < 3) {
+    return sortedArr;
+  }
   return sortedArr.splice(0, 3);
 }
 
@@ -348,7 +351,7 @@ function sortDigitNamesByNumericOrder(arr) {
     nine: 9,
   };
 
-  return arr.sort((first, second) => items[first] > items[second]);
+  return arr.sort((first, second) => (items[first] > items[second] ? 1 : -1));
 }
 /**
  * Returns the sum of all items in the specified array of numbers
@@ -444,7 +447,7 @@ function toStringList(arr) {
  */
 function sortCitiesArray(arr) {
   return arr.sort((itemA, itemB) => itemA.country.localeCompare(itemB.country)
- || itemA.city.localeCompare(itemB.city));
+    || itemA.city.localeCompare(itemB.city));
 }
 
 /**
