@@ -97,8 +97,16 @@ function getPolynom(...args) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const memory = new Map();
+  return function casher(arg) {
+    if (memory.has(arg)) {
+      return memory.get(arg);
+    }
+    const result = func(arg);
+    memory.set(arg, result);
+    return result;
+  };
 }
 
 
@@ -163,9 +171,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
-}
+const partialUsingArguments = (fn, ...args1) => (...args2) => fn(...args1, ...args2);
 
 
 /**
@@ -185,8 +191,13 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  let counter = startFrom - 1;
+
+  return function generator() {
+    counter += 1;
+    return counter;
+  };
 }
 
 
